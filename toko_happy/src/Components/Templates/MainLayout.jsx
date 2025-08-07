@@ -43,7 +43,7 @@ export default function MainLayout({children}) {
                     </a>
 
                     <a
-                        href="#"
+                        href="/keranjang-belanja"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Keranjang Belanja
                     </a>
