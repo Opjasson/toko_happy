@@ -1,10 +1,13 @@
 import React from 'react'
+import MainLayout from '../Components/Templates/MainLayout'
 
 const Dashboard = () => {
   return (
-    <div>
-      
-    </div>
+    <MainLayout>
+      <div>
+        Ini adalah isi
+      </div>
+    </MainLayout>
   )
 }
 

@@ -17,20 +17,35 @@ export default function MainLayout({children}) {
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Dashboard
                     </a>
+
                     <a
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
-                        Master
+                        Kelola Produk
                     </a>
+
                     <a
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
-                        Transaksi
+                        Laporan Penjualan
                     </a>
+
                     <a
                         href="#"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
-                        Setting
+                        Manajemen Pengguna
+                    </a>
+
+                    <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-700 rounded">
+                        Transaksi Penjualan
+                    </a>
+
+                    <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-700 rounded">
+                        Keranjang Belanja
                     </a>
                 </nav>
             </aside>
@@ -39,13 +54,13 @@ export default function MainLayout({children}) {
                 {/* Navbar */}
                 <header className="bg-green-700 text-white p-4 flex justify-between items-center">
                     <div className="text-lg font-bold">
-                        CV DARUTTAQWA
+                        TOKO HAPPY
                         <span className="block text-sm font-normal">
                             JL. UJUNG HARAPAN KAV. DARUTTAQWA RT 005/014 NO.47,
                             KAB. BEKASI
                         </span>
                     </div>
-                    <button className="bg-yellow-400 px-4 py-2 text-black font-bold rounded">
+                    <button className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500">
                         Logout
                     </button>
                 </header>
