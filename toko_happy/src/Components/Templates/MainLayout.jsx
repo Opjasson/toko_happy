@@ -13,13 +13,13 @@ export default function MainLayout({children}) {
                 </div>
                 <nav className="flex-1 p-4 space-y-2">
                     <a
-                        href="#"
+                        href="/"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Dashboard
                     </a>
 
                     <a
-                        href="#"
+                        href="/kelola-produk"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Kelola Produk
                     </a>
