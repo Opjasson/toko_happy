@@ -4,6 +4,7 @@ import KelolaProduk from "./Pages/KelolaProduk";
 import LaporanPenjualan from "./Pages/LaporanPenjualan";
 import ManajemenPengguna from "./Pages/ManajemenPengguna";
 import TransaksiPenjualan from "./Pages/TransaksiPenjualan";
+import KeranjangBelanja from "./Pages/KeranjangBelanja";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/laporan-penjualan" element={<LaporanPenjualan />} />
                     <Route path="/manajemen-pengguna" element={<ManajemenPengguna />} />
                     <Route path="/transaksi-penjualan" element={<TransaksiPenjualan />} />
+                    <Route path="/keranjang-belanja" element={<KeranjangBelanja />} />
                 </Routes>
             </BrowserRouter>
         </>
