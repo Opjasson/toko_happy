@@ -66,8 +66,6 @@ export default function MainLayout({children}) {
                 </header>
 
                 <main className="p-6 space-y-6">
-                    <h1 className="text-2xl font-bold">Keranjang Penjualan</h1>
-
                     {children}
                 </main>
             </div>
