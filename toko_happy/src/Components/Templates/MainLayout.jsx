@@ -25,7 +25,7 @@ export default function MainLayout({children}) {
                     </a>
 
                     <a
-                        href="#"
+                        href="/laporan-penjualan"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Laporan Penjualan
                     </a>

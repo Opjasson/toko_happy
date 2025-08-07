@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Kasir_Layout from "../components/mainLayout/Kasir_Layout";
 import { FaPrint } from "react-icons/fa";
 import axios from "axios";
 import { FaBackward } from "react-icons/fa";
@@ -9,17 +8,7 @@ import MainLayout from "../Components/Templates/MainLayout";
 const LaporanPenjualan = () => {
     return (
         <MainLayout>
-            <div
-                id="headPage"
-                className="mb-10 bg-green-600 md:w-1/2 p-3 rounded-br-4xl rounded-sm text-white">
-                <h1 className="md:text-4xl text-2xl font-extrabold">
-                    Laporan Penjualan
-                </h1>
-                <p className="md:text-xl font-light">
-                    Menampilkan Laporan Penjualan Makanan Dan Minuman
-                </p>
-            </div>
-
+            <h1 className="text-2xl font-bold">Laporan Penjualan</h1>
             <div
                 id="setDate"
                 className="flex items-center mx-auto mb-10 border w-[50%] bg-slate-300 lg:px-2 px-1 lg:py-1.5 py-0 lg:rounded-xl rounded-sm h-fit justify-between">
@@ -65,14 +54,12 @@ const LaporanPenjualan = () => {
             <div className="mb-48">
                 <div className="border-b-2 pb-3 text-center">
                     <h1 className="text-2xl font-bold">
-                        Laporan Penjualan Ayam Geprek Sa'i Mejasem
+                        Laporan Penjualan Toko Happy Pangkah
                     </h1>
+                    <p>Toko Happy | 0823-2494-1099 | happyStore@gmail.com</p>
                     <p>
-                        Ayam geprek sa'i | +6285293729072 | geprekSai@gmail.com
-                    </p>
-                    <p>
-                        Ayam Geprek Sa'i Sibata, Mejasem Bar., Kec. Kramat,
-                        Tegal, Jawa Tengah 52181.
+                        Jl. Ps. Klutuk Pangkah , Kec. Pangkah, Tegal, Jawa
+                        Tengah 52471, Indonesia
                     </p>
                 </div>
 
@@ -102,10 +89,10 @@ const LaporanPenjualan = () => {
                                     Tanggal
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Product name
+                                    Nama Produk
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Qty
+                                    Jumlah
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Harga
