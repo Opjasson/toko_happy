@@ -8,8 +8,8 @@ export default function MainLayout({children}) {
             <aside className="w-64 bg-gray-800 text-white flex flex-col">
                 <div className="p-6 text-center border-b border-gray-700">
                     <div className="w-20 h-20 mx-auto rounded-full bg-gray-600 mb-2" />
-                    <div className="font-bold">Fauzan Falah</div>
-                    <div className="text-sm">(12314121)</div>
+                    <div className="font-bold">Staf Kasir</div>
+                    <div className="text-sm">(0021)</div>
                 </div>
                 <nav className="flex-1 p-4 space-y-2">
                     <a

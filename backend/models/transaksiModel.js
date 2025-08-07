@@ -1,5 +1,6 @@
-import { BOOLEAN, INTEGER, STRING, TEXT, UUIDV4 } from "sequelize";
+import { INTEGER, STRING, UUIDV4 } from "sequelize";
 import db from "../config/database.js";
+import cartModel from "./cartModel.js";
 
 const transaksiModel = db.define(
     "transaksi",
@@ -27,25 +28,12 @@ const transaksiModel = db.define(
                 notEmpty: true,
             },
         },
-        buktiBayar: {
-            type: STRING,
-            allowNull: true,
+        bayarPelanggan: {
+            type: INTEGER,
+            defaultValue: 0,
+            allowNull: false,
             validate: {
-                notEmpty: false,
-            },
-        },
-        catatanTambahan: {
-            type: TEXT,
-            allowNull: true,
-            validate: {
-                notEmpty: false,
-            },
-        },
-        status: {
-            type: BOOLEAN,
-            allowNull: true,
-            validate: {
-                notEmpty: false,
+                notEmpty: true,
             },
         },
     },

@@ -1,13 +1,10 @@
 import { where } from "sequelize";
-import cartModel from "../models/keranjangModel.js";
+import cartModel from "../models/cartModel.js";
 import transaksiModel from "../models/transaksiModel.js";
 
 export const addTransaksi = async (req, res) => {
     try {
-        const { namaPelanggan } = req.body;
-        const response = await transaksiModel.create({
-            namaPelanggan,
-        });
+        const response = await transaksiModel.create();
         res.status(200).json({ response });
     } catch (error) {
         req.status(400).json({ msg: error.message });
@@ -17,9 +14,11 @@ export const addTransaksi = async (req, res) => {
 export const getAllTransaksi = async (req, res) => {
     try {
         const response = await transaksiModel.findAll({
+            attributes: ["id", "uuid", "totalHarga", "namaPelanggan", "bayarPelanggan","createdAt"],
             include: [
                 {
                     model: cartModel,
+                    attributes: ["barangId", "transaksiId", "qty"],
                 },
             ],
         });
@@ -38,6 +37,7 @@ export const getTransaksiByUuid = async (req, res) => {
             include: [
                 {
                     model: cartModel,
+                    attributes: ["barangId", "transaksiId", "qty"],
                 },
             ],
         });
@@ -49,20 +49,12 @@ export const getTransaksiByUuid = async (req, res) => {
 
 export const updateTransaksi = async (req, res) => {
     try {
-        const {
-            totalHarga,
-            namaPelanggan,
-            buktiBayar,
-            catatanTambahan,
-            status,
-        } = req.body;
+        const { totalHarga, namaPelanggan, bayarPelanggan } = req.body;
         await transaksiModel.update(
             {
                 totalHarga,
-                buktiBayar,
+                bayarPelanggan,
                 namaPelanggan,
-                catatanTambahan,
-                status,
             },
             {
                 where: {

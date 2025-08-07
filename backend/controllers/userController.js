@@ -1,11 +1,10 @@
 import Users from "../models/user.js";
-import KeranjangModel from "../models/keranjangModel.js"
 import argon2 from "argon2";
 
 export const getUsers = async (req, res) => {
     try {
         const response = await Users.findAll({
-            attributes: ["id", "email", "username", "role"],
+            attributes: ["id", "email", "role"],
         });
         res.status(200).json({ msg: "get data succesfully", data: response });
     } catch (error) {
@@ -19,11 +18,6 @@ export const getUserById = async (req, res) => {
             where: {
                 id: req.params.id,
             },
-            include: [
-                {
-                    model : KeranjangModel
-                }
-            ]
         });
         res.status(200).json(response);
     } catch (error) {
@@ -32,7 +26,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const { email, username, role, password, confPassword } = req.body;
+    const { email, role, password, confPassword } = req.body;
 
     const alreadyEmail = await Users.findOne({
         where: {
@@ -54,7 +48,6 @@ export const createUser = async (req, res) => {
     try {
         await Users.create({
             email,
-            username,
             role,
             password: HashPassword,
         });
@@ -65,7 +58,7 @@ export const createUser = async (req, res) => {
 };
 
 export const updateUsersById = async (req, res) => {
-    const { email, username, role, password, confPassword } = req.body;
+    const { email, role, password, confPassword } = req.body;
 
     const getUserById = await Users.findOne({
         where: {
@@ -84,7 +77,6 @@ export const updateUsersById = async (req, res) => {
         await Users.update(
             {
                 email,
-                username,
                 role,
                 password: HashPassword,
             },
