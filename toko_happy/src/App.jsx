@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Stock from "./Pages/Dashboard";
+import Dashboard from "./Pages/Dashboard";
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Stock />} />
+                    <Route path="/" element={<Dashboard />} />
                     
                 </Routes>
             </BrowserRouter>
