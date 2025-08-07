@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Stock from "./Pages/Stock";
+import Stock from "./Pages/Dashboard";
 
 
 function App() {

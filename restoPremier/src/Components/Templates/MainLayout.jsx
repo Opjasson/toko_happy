@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 
-export default function MainLayout() {
+export default function MainLayout({children}) {
     return (
         <div className="flex min-h-screen">
             {/* Sidebar */}
@@ -52,6 +52,8 @@ export default function MainLayout() {
 
                 <main className="p-6 space-y-6">
                     <h1 className="text-2xl font-bold">Keranjang Penjualan</h1>
+
+                    {children}
                 </main>
             </div>
         </div>
