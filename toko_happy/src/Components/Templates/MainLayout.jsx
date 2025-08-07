@@ -31,7 +31,7 @@ export default function MainLayout({children}) {
                     </a>
 
                     <a
-                        href="#"
+                        href="/manajemen-pengguna"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Manajemen Pengguna
                     </a>
