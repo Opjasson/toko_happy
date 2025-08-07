@@ -9,7 +9,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
-                    
+                    <Route path="/kelola-produk" element={<Dashboard />} />
                 </Routes>
             </BrowserRouter>
         </>
