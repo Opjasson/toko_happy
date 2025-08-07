@@ -37,7 +37,7 @@ export default function MainLayout({children}) {
                     </a>
 
                     <a
-                        href="#"
+                        href="/transaksi-penjualan"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Transaksi Penjualan
                     </a>

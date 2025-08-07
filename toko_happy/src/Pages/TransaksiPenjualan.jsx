@@ -7,8 +7,8 @@ const TransaksiPenjualan = () => {
             <h1 className="text-2xl font-bold">Transaksi Penjualan</h1>
             <div className="flex justify-between px-16 bg-slate-100 p-5 rounded-xl flex-wrap">
                 {/* {historyTransaksi.map((item, index) => ( */}
-                <div class="block w-2/5 p-6 rounded-lg shadow-sm  bg-gray-800 border-gray-700 hover:bg-gray-700 hover:cursor-pointer mb-5">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
+                <div class="block w-2/5 p-6 rounded-lg shadow-sm  bg-white border-gray-700 hover:bg-slate-300 hover:cursor-pointer mb-5">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight  text-black">
                         History Transaksi :
                     </h5>
 
@@ -22,7 +22,7 @@ const TransaksiPenjualan = () => {
 
                     <p class="font-normal text-blue-600">Daftar Pesanan :</p>
                     {/* {item.carts.map((a, index) => ( */}
-                    <p className="text-white">
+                    <p className="text-black">
                         {/* {barang.find((b) => b.id === a.menuId)?.nama_menu}{" "} */}
                         Rinso x 3 : 20000
                         {/* {barang.find((b) => b.id === a.menuId)?.harga} */}
