@@ -14,7 +14,7 @@ export const addTransaksi = async (req, res) => {
 export const getAllTransaksi = async (req, res) => {
     try {
         const response = await transaksiModel.findAll({
-            attributes: ["id", "uuid", "totalHarga", "namaPelanggan", "bayarPelanggan","createdAt"],
+            attributes: ["id", "uuid", "totalHarga", "bayarPelanggan","createdAt"],
             include: [
                 {
                     model: cartModel,
@@ -49,12 +49,11 @@ export const getTransaksiByUuid = async (req, res) => {
 
 export const updateTransaksi = async (req, res) => {
     try {
-        const { totalHarga, namaPelanggan, bayarPelanggan } = req.body;
+        const { totalHarga, bayarPelanggan } = req.body;
         await transaksiModel.update(
             {
                 totalHarga,
                 bayarPelanggan,
-                namaPelanggan,
             },
             {
                 where: {

@@ -2,13 +2,12 @@ import { Sequelize, where } from "sequelize";
 import barang from "../models/barangModel.js";
 
 export const createBarang = async (req, res) => {
-    const { nama, harga_jual, harga_beli, stok } = req.body;
+    const { nama, harga_jual, stok } = req.body;
 
     try {
         await barang.create({
             nama,
             harga_jual,
-            harga_beli,
             stok,
         });
         res.status(200).json({ msg: "Barang berhasil ditambahkan1" });
@@ -19,12 +18,11 @@ export const createBarang = async (req, res) => {
 
 export const updateBarangById = async (req, res) => {
     try {
-        const { nama, harga_jual, harga_beli, stok } = req.body;
+        const { nama, harga_jual, stok } = req.body;
         await barang.update(
             {
                 nama,
                 harga_jual,
-                harga_beli,
                 stok,
             },
             {
