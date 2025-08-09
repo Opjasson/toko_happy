@@ -2,7 +2,7 @@ import db from "../config/database.js";
 
 import { INTEGER, Sequelize, STRING } from "sequelize";
 
-const barang = db.define("barang", {
+const barang = db.define("produk", {
     nama: {
         type: STRING,
         allowNull: false,
