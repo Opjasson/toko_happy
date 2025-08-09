@@ -55,7 +55,7 @@ const Dashboard = () => {
                                 </th>
                                 <td className="px-6 py-4">{item.stok}</td>
                                 <td className="px-6 py-4"></td>
-                                <td className="px-6 py-4">$1999</td>
+                                <td className="px-6 py-4">Rp. {item.harga_jual.toLocaleString()}</td>
                                 <td className="px-6 py-4">
                                     <a
                                         href="#"
