@@ -17,13 +17,6 @@ const barang = db.define("produk", {
             notEmpty: true,
         },
     },
-    harga_beli: {
-        type: INTEGER,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-        },
-    },
     stok: {
         type: INTEGER,
         allowNull: false,
