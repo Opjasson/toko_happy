@@ -10,6 +10,13 @@ const barang = db.define("produk", {
             notEmpty: true,
         },
     },
+    kategori: {
+        type: STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        },
+    },
     harga_jual: {
         type: INTEGER,
         allowNull: false,
