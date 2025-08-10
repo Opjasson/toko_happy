@@ -7,6 +7,7 @@ import TransaksiPenjualan from "./Pages/TransaksiPenjualan";
 import KeranjangBelanja from "./Pages/KeranjangBelanja";
 import TambahProduk from "./Pages/TambahProduk";
 import UbahProduk from "./Pages/UbahProduk";
+import CetakTransaksi from "./Pages/CetakTransaksi";
 
 
 function App() {
@@ -42,6 +43,11 @@ function App() {
                     <Route
                         path="/kelola-produk/ubah-produk/:id"
                         element={<UbahProduk />}
+                    />
+
+                    <Route
+                        path="/cetak-transaksi"
+                        element={<CetakTransaksi />}
                     />
                 </Routes>
             </BrowserRouter>
