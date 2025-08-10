@@ -1,7 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
+import axios from "axios";
 
 const KeranjangBelanja = () => {
+    const [filteredData, setFilteredData] = useState([]);
+    const [barang, setBarang] = useState([]);
+
+    const getTransaksiReady = async () => {
+        try {
+            const transaksi = await axios.get(
+                "http://localhost:5000/transaksi"
+            );
+            // console.log(transaksi.data.response);
+            const cekTransNullBayar = transaksi.data.response.filter(
+                (item) => item.bayarPelanggan === 0
+            );
+            setFilteredData(cekTransNullBayar);
+            console.log("cek", cekTransNullBayar);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    useEffect(() => {
+        getTransaksiReady();
+    }, []);
+
+    const getDataBarang = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/barang");
+            const barang = await response.json();
+            console.log(barang);
+
+            setBarang(barang);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getDataBarang();
+    }, []);
+
+    const getTotalHarga = async () => {
+        try {
+            
+        } catch (error) {
+            
+        }
+    };
+
     return (
         <MainLayout>
             <h1 className="text-2xl font-bold">Keranjang Belanja</h1>
@@ -30,33 +78,51 @@ const KeranjangBelanja = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {filteredData.length > 0 ? (
-                              filteredData.map((item, index) => ( */}
-                        <tr
-                            //   key={index}
-                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
-                            <th
-                                scope="row"
-                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                1 {/* {index + 1} */}
-                            </th>
+                        {filteredData.length > 0 ? (
+                            filteredData[0].carts.map((item, index) => (
+                                <tr
+                                    key={index}
+                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
+                                    <th
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {index + 1}
+                                    </th>
 
-                            <th
-                                scope="row"
-                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Indomie {/* {item.nama_menu} */}
-                            </th>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                5 {/* {item.qty} */}
-                            </td>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                20000 {/* {item.harga} */}
-                            </td>
-                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                200000 {/* {item.harga * item.qty} */}
-                            </td>
-                        </tr>
+                                    <th
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {
+                                            barang.find(
+                                                (b) => b.id === item.barangId
+                                            )?.nama
+                                        }
+                                    </th>
 
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {item.qty}
+                                    </td>
+
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        Rp.{" "}
+                                        {barang
+                                            .find((b) => b.id === item.barangId)
+                                            ?.harga_jual.toLocaleString()}
+                                    </td>
+
+                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        Rp.{" "}
+                                        {barang.find(
+                                            (b) => b.id === item.barangId
+                                        )?.harga_jual * item.qty}
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr className="text-gray-900 font-bold text-2xl">
+                                <th>Belum Ada Penjualan Bulan Ini</th>
+                            </tr>
+                        )}
                         <tr
                             //   key={index}
                             className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
@@ -75,12 +141,6 @@ const KeranjangBelanja = () => {
                                 200000 {/* {item.harga * item.qty} */}
                             </td>
                         </tr>
-                        {/* ))
-                          ) : (
-                              <h3 className="text-gray-900 font-bold text-2xl">
-                                  Belum Ada Penjualan Bulan Ini
-                              </h3>
-                          )} */}
                     </tbody>
                 </table>
             </div>

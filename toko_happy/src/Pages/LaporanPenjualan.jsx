@@ -133,6 +133,62 @@ const LaporanPenjualan = () => {
                                     200000 {/* {item.harga * item.qty} */}
                                 </td>
                             </tr>
+                            <tr
+                                //   key={index}
+                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    1 {/* {index + 1} */}
+                                </th>
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    2022-2-2 {/* {item.createdAt} */}
+                                </th>
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Indomie {/* {item.nama_menu} */}
+                                </th>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    5 {/* {item.qty} */}
+                                </td>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    20000 {/* {item.harga} */}
+                                </td>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    200000 {/* {item.harga * item.qty} */}
+                                </td>
+                            </tr>
+                            <tr
+                                //   key={index}
+                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    1 {/* {index + 1} */}
+                                </th>
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    2022-2-2 {/* {item.createdAt} */}
+                                </th>
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Indomie {/* {item.nama_menu} */}
+                                </th>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    5 {/* {item.qty} */}
+                                </td>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    20000 {/* {item.harga} */}
+                                </td>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    200000 {/* {item.harga * item.qty} */}
+                                </td>
+                            </tr>
                             {/* ))
                           ) : (
                               <h3 className="text-gray-900 font-bold text-2xl">
