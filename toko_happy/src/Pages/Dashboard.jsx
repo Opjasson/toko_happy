@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Dashboard = () => {
     const [data, setData] = useState([]);
+    const [transReady, setTransReady] = useState();
 
     const getMenus = async () => {
         try {
@@ -21,11 +22,34 @@ const Dashboard = () => {
     const createTransaksi = async () => {
         try {
             await axios.post("http://localhost:5000/transaksi");
-            alert("Silahkan Melanjutkan Belanja :)")
+            alert("Silahkan Melanjutkan Belanja :)");
         } catch (error) {
             console.log(error.message);
         }
     };
+
+    const getTransaksiReady = async () => {
+        try {
+            const transaksi = await axios.get(
+                "http://localhost:5000/transaksi"
+            );
+            // console.log(transaksi.data.response);
+            const cekTransNullBayar = transaksi.data.response.filter(
+                (item) => item.bayarPelanggan === 0
+            );
+            console.log(cekTransNullBayar.length);
+
+            cekTransNullBayar.length > 0
+                ? setTransReady(true)
+                : setTransReady(false);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    useEffect(() => {
+        getTransaksiReady();
+    }, []);
 
     return (
         <MainLayout>
@@ -33,7 +57,9 @@ const Dashboard = () => {
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <button
                     onClick={createTransaksi}
-                    className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500">
+                    className={`bg-yellow-400 px-4 py-2 ${
+                        transReady ? "hidden" : "block"
+                    } text-black font-bold rounded cursor-pointer hover:bg-yellow-500`}>
                     + Buat Pesanan
                 </button>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
