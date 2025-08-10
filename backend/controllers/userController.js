@@ -26,7 +26,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const { username, role, password, confPassword } = req.body;
+    const { username, role, password } = req.body;
 
     const alreadyusername = await Users.findOne({
         where: {
@@ -36,12 +36,6 @@ export const createUser = async (req, res) => {
 
     if (alreadyusername) {
         return res.status(400).json({ msg: "username sudah terpakai!" });
-    }
-
-    if (password !== confPassword) {
-        return res
-            .status(400)
-            .json({ msg: "Password dan Confirm Password tidak cocok" });
     }
 
     const HashPassword = await argon2.hash(password);
