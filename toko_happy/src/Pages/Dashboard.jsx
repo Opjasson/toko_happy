@@ -18,11 +18,22 @@ const Dashboard = () => {
         getMenus();
     }, []);
 
+    const createTransaksi = async () => {
+        try {
+            await axios.post("http://localhost:5000/transaksi");
+            alert("Silahkan Melanjutkan Belanja :)")
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     return (
         <MainLayout>
             <h1 className="text-2xl font-bold">Tambah Pesanan Baru</h1>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <button className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500">
+                <button
+                    onClick={createTransaksi}
+                    className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500">
                     + Buat Pesanan
                 </button>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -47,7 +58,9 @@ const Dashboard = () => {
                     </thead>
                     <tbody>
                         {data.map((item, index) => (
-                            <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                            <tr
+                                key={index}
+                                className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
                                 <th
                                     scope="row"
                                     className="px-6 py-4 font-medium capitalize text-gray-900 whitespace-nowrap dark:text-white">
@@ -55,7 +68,9 @@ const Dashboard = () => {
                                 </th>
                                 <td className="px-6 py-4">{item.stok}</td>
                                 <td className="px-6 py-4">{item.kategori}</td>
-                                <td className="px-6 py-4">Rp. {item.harga_jual.toLocaleString()}</td>
+                                <td className="px-6 py-4">
+                                    Rp. {item.harga_jual.toLocaleString()}
+                                </td>
                                 <td className="px-6 py-4">
                                     <a
                                         href="#"
