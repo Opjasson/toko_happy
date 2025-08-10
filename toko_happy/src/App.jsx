@@ -5,6 +5,7 @@ import LaporanPenjualan from "./Pages/LaporanPenjualan";
 import ManajemenPengguna from "./Pages/ManajemenPengguna";
 import TransaksiPenjualan from "./Pages/TransaksiPenjualan";
 import KeranjangBelanja from "./Pages/KeranjangBelanja";
+import TambahProduk from "./Pages/TambahProduk";
 
 
 function App() {
@@ -15,10 +16,26 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/kelola-produk" element={<KelolaProduk />} />
-                    <Route path="/laporan-penjualan" element={<LaporanPenjualan />} />
-                    <Route path="/manajemen-pengguna" element={<ManajemenPengguna />} />
-                    <Route path="/transaksi-penjualan" element={<TransaksiPenjualan />} />
-                    <Route path="/keranjang-belanja" element={<KeranjangBelanja />} />
+                    <Route
+                        path="/laporan-penjualan"
+                        element={<LaporanPenjualan />}
+                    />
+                    <Route
+                        path="/manajemen-pengguna"
+                        element={<ManajemenPengguna />}
+                    />
+                    <Route
+                        path="/transaksi-penjualan"
+                        element={<TransaksiPenjualan />}
+                    />
+                    <Route
+                        path="/keranjang-belanja"
+                        element={<KeranjangBelanja />}
+                    />
+                    <Route
+                        path="/kelola-produk/tambah-produk"
+                        element={<TambahProduk />}
+                    />
                 </Routes>
             </BrowserRouter>
         </>
