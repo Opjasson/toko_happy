@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 
-export default function MainLayout({children}) {
+export default function MainLayout({ children }) {
     return (
         <div className="flex min-h-screen">
             {/* Sidebar */}
@@ -16,6 +16,12 @@ export default function MainLayout({children}) {
                         href="/"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Dashboard
+                    </a>
+
+                    <a
+                        href="/keranjang-belanja"
+                        className="block px-4 py-2 hover:bg-gray-700 rounded">
+                        Keranjang Belanja
                     </a>
 
                     <a
@@ -41,12 +47,6 @@ export default function MainLayout({children}) {
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Transaksi Penjualan
                     </a>
-
-                    <a
-                        href="/keranjang-belanja"
-                        className="block px-4 py-2 hover:bg-gray-700 rounded">
-                        Keranjang Belanja
-                    </a>
                 </nav>
             </aside>
 
@@ -65,9 +65,7 @@ export default function MainLayout({children}) {
                     </button>
                 </header>
 
-                <main className="p-6 space-y-6">
-                    {children}
-                </main>
+                <main className="p-6 space-y-6">{children}</main>
             </div>
         </div>
     );
