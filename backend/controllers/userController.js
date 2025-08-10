@@ -4,7 +4,7 @@ import argon2 from "argon2";
 export const getUsers = async (req, res) => {
     try {
         const response = await Users.findAll({
-            attributes: ["id", "email", "role"],
+            attributes: ["id", "username", "role"],
         });
         res.status(200).json({ msg: "get data succesfully", data: response });
     } catch (error) {
@@ -26,16 +26,16 @@ export const getUserById = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-    const { email, role, password, confPassword } = req.body;
+    const { username, role, password, confPassword } = req.body;
 
-    const alreadyEmail = await Users.findOne({
+    const alreadyusername = await Users.findOne({
         where: {
-            email: email,
+            username: username,
         },
     });
 
-    if (alreadyEmail) {
-        return res.status(400).json({ msg: "Email sudah terpakai!" });
+    if (alreadyusername) {
+        return res.status(400).json({ msg: "username sudah terpakai!" });
     }
 
     if (password !== confPassword) {
@@ -47,7 +47,7 @@ export const createUser = async (req, res) => {
     const HashPassword = await argon2.hash(password);
     try {
         await Users.create({
-            email,
+            username,
             role,
             password: HashPassword,
         });
@@ -58,7 +58,7 @@ export const createUser = async (req, res) => {
 };
 
 export const updateUsersById = async (req, res) => {
-    const { email, role, password, confPassword } = req.body;
+    const { username, role, password, confPassword } = req.body;
 
     const getUserById = await Users.findOne({
         where: {
@@ -76,7 +76,7 @@ export const updateUsersById = async (req, res) => {
     try {
         await Users.update(
             {
-                email,
+                username,
                 role,
                 password: HashPassword,
             },
