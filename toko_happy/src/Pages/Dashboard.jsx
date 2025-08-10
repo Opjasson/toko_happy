@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [data, setData] = useState([]);
     const [transaksiId, setTransaksiId] = useState();
     const [transReady, setTransReady] = useState(false);
     const [dataTrans, setDataTrans] = useState();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem("info")) {
+            navigate("/login");
+        }
+    });
 
     const getMenus = async () => {
         try {
@@ -61,7 +70,7 @@ const Dashboard = () => {
     };
 
     console.log(transReady);
-    
+
     useEffect(() => {
         getTransaksiReady();
     }, []);
