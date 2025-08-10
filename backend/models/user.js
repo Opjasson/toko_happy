@@ -6,7 +6,7 @@ const { DataTypes } = Sequelize;
 const Users = db.define(
     "users",
     {
-        email: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
