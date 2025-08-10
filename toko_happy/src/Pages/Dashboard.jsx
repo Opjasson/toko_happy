@@ -67,33 +67,31 @@ const Dashboard = () => {
     const addToCart = async (id) => {
         const cek = dataTrans.carts.find((b) => b.barangId === id);
         console.log(cek);
-        
-        // if (transReady) {
-        //     if (cek) {
-        //         try {
-        //             await axios.post("http://localhost:5000/cart", {
-        //                 qty: 1,
-        //                 transaksiId: transaksiId,
-        //                 barangId: id,
-        //             });
-        //             alert("Barang Berhasil Dimasukan Keranjang!");
-        //         } catch (error) {
-        //             console.log(error.message);
-        //         }
-        //     }
-        //     try {
-        //         await axios.post("http://localhost:5000/cart", {
-        //             qty: 1,
-        //             transaksiId: transaksiId,
-        //             barangId: id,
-        //         });
-        //         alert("Barang Berhasil Dimasukan Keranjang!");
-        //     } catch (error) {
-        //         console.log(error.message);
-        //     }
-        // } else {
-        //     alert("Buat Pesanan Dulu!");
-        // }
+        if (transReady) {
+            if (cek) {
+                try {
+                    await axios.patch(`http://localhost:5000/cart/${cek.id}`, {
+                        qty: cek.qty + 1,
+                    });
+                    alert("Barang Berhasil Dimasukan Keranjang!");
+                } catch (error) {
+                    console.log(error.message);
+                }
+            } else {
+                try {
+                    await axios.post("http://localhost:5000/cart", {
+                        qty: 1,
+                        transaksiId: transaksiId,
+                        barangId: id,
+                    });
+                    alert("Barang Berhasil Dimasukan Keranjang!");
+                } catch (error) {
+                    console.log(error.message);
+                }
+            }
+        } else {
+            alert("Buat Pesanan Dulu!");
+        }
     };
 
     return (
