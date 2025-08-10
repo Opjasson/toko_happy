@@ -46,7 +46,7 @@ const TransaksiPenjualan = () => {
                 {historyTransaksi.map((item, index) => (
                     <div
                         key={index}
-                        onClick={() => navigate(`/cetak-transaksi/${item.id}`)}
+                        onClick={() => navigate(`/cetak-transaksi/${item.uuid}`)}
                         class="block w-2/5 p-6 rounded-lg shadow-sm  bg-gray-800 border-gray-700 hover:bg-gray-700 hover:cursor-pointer mb-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
                             History Transaksi :
