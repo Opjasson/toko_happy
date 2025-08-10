@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 
 export default function MainLayout({ children }) {
     const username = localStorage.getItem("username");
@@ -9,7 +10,7 @@ export default function MainLayout({ children }) {
             {/* Sidebar */}
             <aside className="w-64 bg-gray-800 text-white flex flex-col">
                 <div className="p-6 text-center border-b border-gray-700">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-gray-600 mb-2" />
+                    <FaUserAlt className="w-20 h-20 mx-auto rounded-full bg-gray-600 mb-2" />
                     <div className="font-bold">{username}</div>
                     <div className="text-sm">(0021)</div>
                 </div>
