@@ -40,7 +40,7 @@ function App() {
                     />
 
                     <Route
-                        path="/kelola-produk/ubah-produk"
+                        path="/kelola-produk/ubah-produk/:id"
                         element={<UbahProduk />}
                     />
                 </Routes>

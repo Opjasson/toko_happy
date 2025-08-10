@@ -80,12 +80,14 @@ const KelolaProduk = () => {
                                 </td>
                                 <td class="px-6 py-4">
                                     <a
-                                        href="#"
+                                        href="/kelola-produk/ubah-produk"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-5">
                                         Edit
                                     </a>
                                     <a
-                                        onClick={() => handleDeleteBarang(item.id)}
+                                        onClick={() =>
+                                            handleDeleteBarang(item.id)
+                                        }
                                         class="font-medium cursor-pointer text-blue-600 dark:text-blue-500 hover:underline">
                                         Hapus
                                     </a>
