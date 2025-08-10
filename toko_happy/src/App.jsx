@@ -6,6 +6,7 @@ import ManajemenPengguna from "./Pages/ManajemenPengguna";
 import TransaksiPenjualan from "./Pages/TransaksiPenjualan";
 import KeranjangBelanja from "./Pages/KeranjangBelanja";
 import TambahProduk from "./Pages/TambahProduk";
+import UbahProduk from "./Pages/UbahProduk";
 
 
 function App() {
@@ -32,9 +33,15 @@ function App() {
                         path="/keranjang-belanja"
                         element={<KeranjangBelanja />}
                     />
+
                     <Route
                         path="/kelola-produk/tambah-produk"
                         element={<TambahProduk />}
+                    />
+
+                    <Route
+                        path="/kelola-produk/ubah-produk"
+                        element={<UbahProduk />}
                     />
                 </Routes>
             </BrowserRouter>
