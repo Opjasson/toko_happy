@@ -26,3 +26,21 @@ export const getCartAll = async (req, res) => {
     }
 };
 
+export const updateCart = async (req, res) => {
+    try {
+        const { qty } = req.body;
+        await cartModel.update(
+            {
+                qty
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+        res.status(200).json({ msg: "Data berhasil dirubah!" });
+    } catch (error) {
+        res.status(400).json({ msg: error.message });
+    }
+};
