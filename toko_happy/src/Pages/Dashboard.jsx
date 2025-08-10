@@ -4,7 +4,8 @@ import axios from "axios";
 
 const Dashboard = () => {
     const [data, setData] = useState([]);
-    const [transReady, setTransReady] = useState();
+    const [transaksiId, setTransaksiId] = useState();
+    const [transReady, setTransReady] = useState(false);
 
     const getMenus = async () => {
         try {
@@ -20,11 +21,21 @@ const Dashboard = () => {
     }, []);
 
     const createTransaksi = async () => {
-        try {
-            await axios.post("http://localhost:5000/transaksi");
+        if (transReady) {
             alert("Silahkan Melanjutkan Belanja :)");
-        } catch (error) {
-            console.log(error.message);
+        } else {
+            try {
+                const response = await axios.post(
+                    "http://localhost:5000/transaksi"
+                );
+                setTransReady(true);
+                setTransaksiId(response.data.response.id);
+                console.log(response.data.response.id);
+
+                alert("Silahkan Melanjutkan Belanja :)");
+            } catch (error) {
+                console.log(error.message);
+            }
         }
     };
 
@@ -37,8 +48,8 @@ const Dashboard = () => {
             const cekTransNullBayar = transaksi.data.response.filter(
                 (item) => item.bayarPelanggan === 0
             );
-            console.log(cekTransNullBayar.length);
-
+            setTransaksiId(cekTransNullBayar[0].id);
+            // console.log(cekTransNullBayar[0].id);
             cekTransNullBayar.length > 0
                 ? setTransReady(true)
                 : setTransReady(false);
@@ -50,6 +61,25 @@ const Dashboard = () => {
     useEffect(() => {
         getTransaksiReady();
     }, []);
+
+    const addToCart = async (id) => {
+        if (transReady) {
+            try {
+                await axios.post(
+                    "http://localhost:5000/cart", {
+                        qty : 1,
+                        transaksiId : transaksiId,
+                        barangId : id
+                    }
+                );
+                alert("Barang Berhasil Dimasukan Keranjang!")
+            } catch (error) {
+                console.log(error.message);
+            }
+        }else{
+            alert("Buat Pesanan Dulu!")
+        }
+    }
 
     return (
         <MainLayout>
@@ -99,8 +129,8 @@ const Dashboard = () => {
                                 </td>
                                 <td className="px-6 py-4">
                                     <a
-                                        href="#"
-                                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        onClick={() => addToCart(item.id)}
+                                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer">
                                         Tambahkan
                                     </a>
                                 </td>
