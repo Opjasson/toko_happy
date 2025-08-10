@@ -60,14 +60,16 @@ const Dashboard = () => {
         }
     };
 
+    console.log(transReady);
+    
     useEffect(() => {
         getTransaksiReady();
     }, []);
 
     const addToCart = async (id) => {
-        const cek = dataTrans.carts.find((b) => b.barangId === id);
-        console.log(cek);
         if (transReady) {
+            const cek = dataTrans.carts.find((b) => b.barangId === id);
+            console.log(cek);
             if (cek) {
                 try {
                     await axios.patch(`http://localhost:5000/cart/${cek.id}`, {
