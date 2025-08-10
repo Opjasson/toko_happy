@@ -80,7 +80,7 @@ const KelolaProduk = () => {
                                 </td>
                                 <td class="px-6 py-4">
                                     <a
-                                        href="/kelola-produk/ubah-produk"
+                                        href={`/kelola-produk/ubah-produk/${item.id}`}
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-5">
                                         Edit
                                     </a>

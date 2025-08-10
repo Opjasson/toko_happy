@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UbahProduk = () => {
     const [namaBarang, setNamaBarang] = useState();
@@ -10,39 +10,62 @@ const UbahProduk = () => {
     const [stokBarang, setStokBarang] = useState();
 
     const navigate = useNavigate();
+    const { id } = useParams();
 
-    const handleCreateBarang = async (e) => {
+    const GetBarangById = async () => {
+        try {
+            const response = await axios.get(
+                `http://localhost:5000/barang/${id}`
+            );
+            setNamaBarang(response.data.nama);
+            setKategori(response.data.kategori);
+            setHargaBarang(response.data.harga_jual);
+            setStokBarang(response.data.stok);
+
+            console.log(response.data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    useEffect(() => {
+        GetBarangById();
+    }, [id]);
+
+    const handleUpdateBarang = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/barang", {
+            await axios.patch(`http://localhost:5000/barang/${id}`, {
                 nama: namaBarang,
                 kategori: kategori,
                 harga_jual: hargaBarang,
                 stok: stokBarang,
             });
-            alert("Barang Berhasil Ditambahkan!");
+            alert("Barang Berhasil Dirubah!");
             navigate("/kelola-produk");
         } catch (error) {
             console.log(error.message);
         }
     };
+
     return (
         <MainLayout>
             <h1 className="text-2xl font-bold">Ubah Produk</h1>
-            <form onSubmit={handleCreateBarang} className="space-y-3">
+            <form onSubmit={handleUpdateBarang} className="space-y-3">
                 <input
                     type="text"
                     name="NamaProduk"
                     placeholder="Nama Produk"
                     onChange={(a) => setNamaBarang(a.target.value)}
-                    className="w-full border p-2 rounded bg-blue-100"
+                    className="w-full capitalize border p-2 rounded bg-blue-100"
+                    value={namaBarang}
                 />
 
                 <select
                     name="kategori"
                     onChange={(a) => setKategori(a.target.value)}
                     className="w-full border p-2 rounded">
-                    <option value="">-- Pilih Kategori --</option>
+                    <option value={kategori}>{kategori}</option>
                     <option value="meja">Meja</option>
                     <option value="kursi">Kursi</option>
                     <option value="etalase">Etalase</option>
@@ -55,6 +78,7 @@ const UbahProduk = () => {
                     placeholder="Harga Barang"
                     onChange={(a) => setHargaBarang(a.target.value)}
                     className="w-full border p-2 rounded bg-blue-100"
+                    value={hargaBarang}
                 />
 
                 <input
@@ -63,6 +87,7 @@ const UbahProduk = () => {
                     placeholder="Stok Barang"
                     onChange={(a) => setStokBarang(a.target.value)}
                     className="w-full border p-2 rounded bg-blue-100"
+                    value={stokBarang}
                 />
 
                 <button
