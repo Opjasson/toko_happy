@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -8,16 +8,23 @@ const LoginPage = () => {
     const [error, setError] = useState();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (localStorage.getItem("info")) {
+            navigate("/");
+        }
+    });
+
     const handleLogin = async (e) => {
         e.preventDefault();
         console.log("Username:", username);
         console.log("Password:", password);
         // Tambahkan logic login API di sini
         try {
-            await axios.post("http://localhost:5000/login", {
+          const response = await axios.post("http://localhost:5000/login", {
                 username,
                 password,
             });
+            localStorage.setItem("info", response.data["response"].role);
             navigate("/");
         } catch (error) {
             console.log(error.message);
