@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const KelolaProduk = () => {
     const [barang, setBarang] = useState([]);
@@ -22,6 +23,16 @@ const KelolaProduk = () => {
     useEffect(() => {
         getDataBarang();
     }, []);
+
+        const handleDeleteBarang = async (id) => {
+            try {
+                await axios.delete(`http://localhost:5000/barang/${id}`);
+                alert("Barang berhasil dihapus!");
+                navigate("/");
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
     return (
         <MainLayout>
@@ -74,8 +85,8 @@ const KelolaProduk = () => {
                                         Edit
                                     </a>
                                     <a
-                                        href="#"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        onClick={() => handleDeleteBarang(item.id)}
+                                        class="font-medium cursor-pointer text-blue-600 dark:text-blue-500 hover:underline">
                                         Hapus
                                     </a>
                                 </td>
