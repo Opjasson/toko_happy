@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
+import { useNavigate } from "react-router-dom";
 
 const KelolaProduk = () => {
     const [barang, setBarang] = useState([]);
+
+    const navigate = useNavigate();
 
     const getDataBarang = async () => {
         try {
@@ -24,7 +27,9 @@ const KelolaProduk = () => {
         <MainLayout>
             <h1 className="text-2xl font-bold">Kelola Produk</h1>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <button className="bg-green-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-green-500">
+                <button
+                    onClick={() => navigate("/kelola-produk/tambah-produk")}
+                    className="bg-green-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-green-500">
                     + Tambah Produk
                 </button>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -49,7 +54,9 @@ const KelolaProduk = () => {
                     </thead>
                     <tbody>
                         {barang.map((item, index) => (
-                            <tr key={index} class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                            <tr
+                                key={index}
+                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
                                 <th
                                     scope="row"
                                     class="px-6 capitalize py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -57,7 +64,9 @@ const KelolaProduk = () => {
                                 </th>
                                 <td class="px-6 py-4">{item.stok}</td>
                                 <td class="px-6 py-4">{item.kategori}</td>
-                                <td class="px-6 py-4">Rp. {item.harga_jual.toLocaleString()}</td>
+                                <td class="px-6 py-4">
+                                    Rp. {item.harga_jual.toLocaleString()}
+                                </td>
                                 <td class="px-6 py-4">
                                     <a
                                         href="#"
