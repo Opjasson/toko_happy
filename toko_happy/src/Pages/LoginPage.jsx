@@ -23,14 +23,14 @@ const LoginPage = () => {
                       placeholder="Username"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full px-3 py-2 mb-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full px-3 py-2 bg-white mb-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                   />
                   <input
                       type="password"
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-3 py-2 mb-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className="w-full px-3 py-2 bg-white mb-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                   />
                   <button
                       type="submit"
