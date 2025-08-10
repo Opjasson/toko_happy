@@ -6,6 +6,7 @@ const Dashboard = () => {
     const [data, setData] = useState([]);
     const [transaksiId, setTransaksiId] = useState();
     const [transReady, setTransReady] = useState(false);
+    const [dataTrans, setDataTrans] = useState();
 
     const getMenus = async () => {
         try {
@@ -48,8 +49,9 @@ const Dashboard = () => {
             const cekTransNullBayar = transaksi.data.response.filter(
                 (item) => item.bayarPelanggan === 0
             );
+            setDataTrans(cekTransNullBayar[0]);
             setTransaksiId(cekTransNullBayar[0].id);
-            // console.log(cekTransNullBayar[0].id);
+            console.log(cekTransNullBayar[0]);
             cekTransNullBayar.length > 0
                 ? setTransReady(true)
                 : setTransReady(false);
@@ -63,23 +65,34 @@ const Dashboard = () => {
     }, []);
 
     const addToCart = async (id) => {
+        const cek = dataTrans.carts.find((b) => b.barangId === id);
         if (transReady) {
+            if (cek) {
+                try {
+                    await axios.post("http://localhost:5000/cart", {
+                        qty: 1,
+                        transaksiId: transaksiId,
+                        barangId: id,
+                    });
+                    alert("Barang Berhasil Dimasukan Keranjang!");
+                } catch (error) {
+                    console.log(error.message);
+                }
+            }
             try {
-                await axios.post(
-                    "http://localhost:5000/cart", {
-                        qty : 1,
-                        transaksiId : transaksiId,
-                        barangId : id
-                    }
-                );
-                alert("Barang Berhasil Dimasukan Keranjang!")
+                await axios.post("http://localhost:5000/cart", {
+                    qty: 1,
+                    transaksiId: transaksiId,
+                    barangId: id,
+                });
+                alert("Barang Berhasil Dimasukan Keranjang!");
             } catch (error) {
                 console.log(error.message);
             }
-        }else{
-            alert("Buat Pesanan Dulu!")
+        } else {
+            alert("Buat Pesanan Dulu!");
         }
-    }
+    };
 
     return (
         <MainLayout>
