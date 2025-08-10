@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function MainLayout({ children }) {
     const username = localStorage.getItem("username");
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login");
+    };
 
     return (
         <div className="flex min-h-screen">
@@ -63,7 +70,9 @@ export default function MainLayout({ children }) {
                             Tengah 52471, Indonesia
                         </span>
                     </div>
-                    <button className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500">
+                    <button
+                        onClick={handleLogout}
+                        className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500">
                         Logout
                     </button>
                 </header>
