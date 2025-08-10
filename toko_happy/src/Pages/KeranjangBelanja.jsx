@@ -5,6 +5,7 @@ import axios from "axios";
 const KeranjangBelanja = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [barang, setBarang] = useState([]);
+    const [totalPrice, setTotalPrice] = useState();
 
     const getTransaksiReady = async () => {
         try {
@@ -15,8 +16,21 @@ const KeranjangBelanja = () => {
             const cekTransNullBayar = transaksi.data.response.filter(
                 (item) => item.bayarPelanggan === 0
             );
+
             setFilteredData(cekTransNullBayar);
-            console.log("cek", cekTransNullBayar);
+
+            if (cekTransNullBayar[0].carts.length > 0) {
+                const sum = cekTransNullBayar[0].carts.reduce((acc, item) => {
+                    const product = barang.find(
+                        (productItem) => productItem.id === item.barangId
+                    );
+                    return acc + Number(product.harga_jual) * Number(item.qty);
+                }, 0);
+                setTotalPrice(sum);
+            } else {
+                setTotalPrice(0);
+            }
+            console.log("cek", cekTransNullBayar[0].carts);
         } catch (error) {
             console.log(error.message);
         }
@@ -24,7 +38,7 @@ const KeranjangBelanja = () => {
 
     useEffect(() => {
         getTransaksiReady();
-    }, []);
+    }, [barang]);
 
     const getDataBarang = async () => {
         try {
@@ -42,13 +56,6 @@ const KeranjangBelanja = () => {
         getDataBarang();
     }, []);
 
-    const getTotalHarga = async () => {
-        try {
-            
-        } catch (error) {
-            
-        }
-    };
 
     return (
         <MainLayout>
@@ -138,7 +145,7 @@ const KeranjangBelanja = () => {
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                200000 {/* {item.harga * item.qty} */}
+                               Rp. {totalPrice?.toLocaleString()}
                             </td>
                         </tr>
                     </tbody>
