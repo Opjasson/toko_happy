@@ -8,6 +8,7 @@ import KeranjangBelanja from "./Pages/KeranjangBelanja";
 import TambahProduk from "./Pages/TambahProduk";
 import UbahProduk from "./Pages/UbahProduk";
 import CetakTransaksi from "./Pages/CetakTransaksi";
+import LoginPage from "./Pages/LoginPage";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/login" element={<LoginPage />} />
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/kelola-produk" element={<KelolaProduk />} />
                     <Route
