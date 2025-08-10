@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const TransaksiPenjualan = () => {
     const [historyTransaksi, setHistoryTransaksi] = useState([]);
 
     const [barang, setBarang] = useState([]);
+
+    const navigate = useNavigate()
 
     const getHistorys = async () => {
         try {
@@ -43,6 +46,7 @@ const TransaksiPenjualan = () => {
                 {historyTransaksi.map((item, index) => (
                     <div
                         key={index}
+                        onClick={() => navigate(`/cetak-transaksi/${item.id}`)}
                         class="block w-2/5 p-6 rounded-lg shadow-sm  bg-gray-800 border-gray-700 hover:bg-gray-700 hover:cursor-pointer mb-5">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
                             History Transaksi :
