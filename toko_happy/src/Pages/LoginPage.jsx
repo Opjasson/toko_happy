@@ -25,6 +25,7 @@ const LoginPage = () => {
                 password,
             });
             localStorage.setItem("info", response.data["response"].role);
+            localStorage.setItem("username", response.data["response"].username);
             navigate("/");
         } catch (error) {
             console.log(error.message);
