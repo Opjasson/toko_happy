@@ -25,6 +25,12 @@ export default function MainLayout({ children }) {
                     </a>
 
                     <a
+                        href="/transaksi-penjualan"
+                        className="block px-4 py-2 hover:bg-gray-700 rounded">
+                        Transaksi Penjualan
+                    </a>
+
+                    <a
                         href="/kelola-produk"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Kelola Produk
@@ -40,12 +46,6 @@ export default function MainLayout({ children }) {
                         href="/manajemen-pengguna"
                         className="block px-4 py-2 hover:bg-gray-700 rounded">
                         Manajemen Pengguna
-                    </a>
-
-                    <a
-                        href="/transaksi-penjualan"
-                        className="block px-4 py-2 hover:bg-gray-700 rounded">
-                        Transaksi Penjualan
                     </a>
                 </nav>
             </aside>
