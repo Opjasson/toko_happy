@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const KeranjangBelanja = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [barang, setBarang] = useState([]);
-    const [totalPrice, setTotalPrice] = useState();
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [bayarTunai, setBayarTunai] = useState();
+    const [transaksiId, setTransaksiId] = useState();
+
+    const navigate = useNavigate();
 
     const getTransaksiReady = async () => {
         try {
@@ -16,7 +21,7 @@ const KeranjangBelanja = () => {
             const cekTransNullBayar = transaksi.data.response.filter(
                 (item) => item.bayarPelanggan === 0
             );
-
+            setTransaksiId(cekTransNullBayar[0].id);
             setFilteredData(cekTransNullBayar);
 
             if (cekTransNullBayar[0].carts.length > 0) {
@@ -56,11 +61,27 @@ const KeranjangBelanja = () => {
         getDataBarang();
     }, []);
 
-
+    const handleProsesTransaksi = async () => {
+        try {
+            await axios.patch(
+                `http://localhost:5000/transaksi/${transaksiId}`,
+                {
+                    totalHarga: totalPrice,
+                    bayarPelanggan: bayarTunai,
+                }
+            );
+            alert("Berhasil Di Proses")
+            navigate("/")
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
     return (
         <MainLayout>
             <h1 className="text-2xl font-bold">Keranjang Belanja</h1>
-            <button className="bg-green-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-green-500">
+            <button
+                onClick={() => navigate("/")}
+                className="bg-green-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-green-500">
                 + Tambah Produk
             </button>
             <div className="border relative overflow-x-auto">
@@ -127,7 +148,7 @@ const KeranjangBelanja = () => {
                             ))
                         ) : (
                             <tr className="text-gray-900 font-bold text-2xl">
-                                <th>Belum Ada Penjualan Bulan Ini</th>
+                                <th>Belum Ada Barang Yang Ditambahkan!</th>
                             </tr>
                         )}
                         <tr
@@ -145,13 +166,39 @@ const KeranjangBelanja = () => {
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
                             <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                               Rp. {totalPrice?.toLocaleString()}
+                                Rp. {totalPrice?.toLocaleString()}
+                            </td>
+                        </tr>
+                        <tr
+                            //   key={index}
+                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-black">
+                            <th
+                                scope="row"
+                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Bayar Tunai :
+                            </th>
+
+                            <th
+                                scope="row"
+                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
+                            <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <input
+                                    className="border pl-1.5"
+                                    type="number"
+                                    placeholder="Rp. xxx"
+                                    onChange={(e) =>
+                                        setBayarTunai(e.target.value)
+                                    }
+                                    required
+                                />
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <button className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500 flex justify-self-center">
+            <button onClick={() => handleProsesTransaksi()} className="bg-yellow-400 px-4 py-2 text-black font-bold rounded cursor-pointer hover:bg-yellow-500 flex justify-self-center">
                 Bayar & Simpan Transaksi
             </button>
         </MainLayout>
