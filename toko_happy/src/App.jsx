@@ -46,7 +46,7 @@ function App() {
                     />
 
                     <Route
-                        path="/cetak-transaksi"
+                        path="/cetak-transaksi/:id"
                         element={<CetakTransaksi />}
                     />
                 </Routes>
