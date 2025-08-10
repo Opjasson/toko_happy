@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../Components/Templates/MainLayout";
 
 const KelolaProduk = () => {
+    const [barang, setBarang] = useState([]);
+
+    const getDataBarang = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/barang");
+            const barang = await response.json();
+            console.log(barang);
+
+            setBarang(barang);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getDataBarang();
+    }, []);
+
     return (
         <MainLayout>
             <h1 className="text-2xl font-bold">Kelola Produk</h1>
@@ -30,28 +48,30 @@ const KelolaProduk = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                            <th
-                                scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="px-6 py-4">White</td>
-                            <td class="px-6 py-4">Laptop PC</td>
-                            <td class="px-6 py-4">$1999</td>
-                            <td class="px-6 py-4">
-                                <a
-                                    href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-5">
-                                    Edit
-                                </a>
-                                <a
-                                    href="#"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                    Hapus
-                                </a>
-                            </td>
-                        </tr>
+                        {barang.map((item, index) => (
+                            <tr key={index} class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                                <th
+                                    scope="row"
+                                    class="px-6 capitalize py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {item.nama}
+                                </th>
+                                <td class="px-6 py-4">{item.stok}</td>
+                                <td class="px-6 py-4">{item.kategori}</td>
+                                <td class="px-6 py-4">Rp. {item.harga_jual.toLocaleString()}</td>
+                                <td class="px-6 py-4">
+                                    <a
+                                        href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-5">
+                                        Edit
+                                    </a>
+                                    <a
+                                        href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        Hapus
+                                    </a>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
